@@ -1,0 +1,1240 @@
+/* ===========================================================
+   PM Sheets — shared design system
+   Industrial, modern, no-frills. System fonts, no emoji.
+   =========================================================== */
+
+/* Farb- und Abstandsvariablen, die im ganzen Stylesheet wiederverwendet werden. */
+:root {
+  /* Grautöne von dunkel (900) nach hell (100), für Text/Hintergründe */
+  --ink-900: #10161d;
+  --ink-800: #1c2530;
+  --ink-700: #2a3644;
+  --ink-600: #3d4c5e;
+  --ink-400: #6b7a8d;
+  --ink-300: #97a4b3;
+  --ink-200: #c4ccd6;
+  --ink-100: #e4e8ed;
+  --paper: #f5f6f8;
+  --card: #ffffff;
+  --line: #dfe3e9;
+
+  /* Farbe der dunklen Balken (Kopfleiste, Abschnitts-Titel, Aktionsleiste).
+     Eigene Variable, getrennt von --ink-800, damit sie in dunklen Themes
+     weiterhin dunkel bleiben kann, während --ink-800 (normaler Text) dort heller wird. */
+  --bar-bg: #1c2530;
+
+  /* Neutrale Hervorhebung für Hover-Zustände und den "Pending"-Knopf,
+     ebenfalls eigene Variable, damit sie pro Theme sauber angepasst werden kann. */
+  --hl-bg: #e4e8ed;
+  --hl-fg: #3d4c5e;
+
+  --accent: #2f6fed;
+  --accent-ink: #ffffff;
+  --accent-soft: #e8f0fe;
+
+  /* Statusfarben: kräftig/knallig gewählt, damit "Done" und "Ongoing"
+     auf einen Blick erkennbar sind (auch im PDF-Ausdruck). */
+  --done-bg: #17a35a; /* Grün für erledigte Schritte */
+  --done-fg: #ffffff;
+  --done-dot: #17a35a;
+
+  --ongoing-bg: #f5810c; /* Orange für laufende Schritte */
+  --ongoing-fg: #ffffff;
+  --ongoing-dot: #f5810c;
+
+  --notneeded-bg: #eceff2; /* Grau für "nicht benötigt" */
+  --notneeded-fg: #5b6776;
+  --notneeded-dot: #97a4b3;
+
+  --pending-bg: #ffffff; /* Neutral für "noch offen" */
+  --pending-fg: #8a94a1;
+  --pending-dot: #c4ccd6;
+
+  /* Ampelfarbe für Messwert-Tabellen, wenn ein Wert die Spezifikation
+     überschreitet (z.B. Lebensdauer-Limit erreicht). Bewusst nicht pro
+     Theme unterschiedlich, wie die Status-Farben oben. */
+  --bad-bg: #dc2626;
+  --bad-fg: #ffffff;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 1px 2px rgba(16, 22, 29, 0.06);
+  --shadow-md: 0 4px 16px rgba(16, 22, 29, 0.08);
+  --shadow-lg: 0 12px 32px rgba(16, 22, 29, 0.14);
+
+  color-scheme: light;
+}
+
+/* ===========================================================
+   Themes
+   Jedes Theme überschreibt einfach dieselben Variablen von oben.
+   Das Attribut data-theme="..." wird auf <html> gesetzt (siehe theme.js).
+   Ohne Attribut gilt das Standard-Theme "Industrial Blue" von oben.
+   Statusfarben (Done/Ongoing/...) bleiben bewusst in jedem Theme gleich,
+   damit sie immer gleich aussehen — nur die Optik rundherum ändert sich.
+   =========================================================== */
+
+/* Hitachi Energy — an das echte Farbschema von hitachienergy.com angelehnt:
+   reines Weiß, fast schwarzer Text, kräftiges Rot als Akzent. Die Werte
+   (#fa0011, #0c0c0c, #fde7ea, #d9d9d9, #737373, #b3b3b3) stammen direkt aus
+   dem CSS der echten Seite, nicht frei erfunden. */
+:root[data-theme="hitachi"] {
+  --ink-900: #0c0c0c;
+  --ink-800: #0c0c0c;
+  --ink-700: #262626;
+  --ink-600: #4d4d4d;
+  --ink-400: #737373;
+  --ink-300: #b3b3b3;
+  --paper: #ffffff;
+  --card: #ffffff;
+  --line: #d9d9d9;
+  --bar-bg: #0c0c0c;
+  --hl-bg: #f4f4f4;
+  --hl-fg: #4d4d4d;
+  --accent: #fa0011;
+  --accent-soft: #fde7ea;
+  --pending-bg: #ffffff;
+  --pending-fg: #b3b3b3;
+  color-scheme: light;
+}
+
+/* Dark — neutrales dunkles Theme, gleiche Blau-Akzentfarbe wie das Standard-Theme */
+:root[data-theme="dark"] {
+  --ink-900: #f7f9fb;
+  --ink-800: #e6eaf0;
+  --ink-700: #c7cdd6;
+  --ink-600: #a9b1bc;
+  --ink-400: #8b95a3;
+  --ink-300: #5b6472;
+  --paper: #12161c;
+  --card: #181d25;
+  --line: #2a323d;
+  --bar-bg: #0d1116;
+  --hl-bg: #232a33;
+  --hl-fg: #e6eaf0;
+  --accent: #4c8dff;
+  --accent-ink: #0d1116; /* Akzentblau ist hell -> dunkler Text statt Weiß für genug Kontrast */
+  --accent-soft: #1c2c4d;
+  --pending-bg: #181d25;
+  --pending-fg: #8b95a3;
+  color-scheme: dark;
+}
+
+/* Tokyo Night — dunkles Theme mit dem bekannten Tokyo-Night-Blau */
+:root[data-theme="tokyonight"] {
+  --ink-900: #f4f5fb;
+  --ink-800: #c0caf5;
+  --ink-700: #a9b1d6;
+  --ink-600: #9aa5ce;
+  --ink-400: #737aa2;
+  --ink-300: #565f89;
+  --paper: #1a1b26;
+  --card: #1f2335;
+  --line: #29304d;
+  --bar-bg: #16161e;
+  --hl-bg: #2b3660;
+  --hl-fg: #c0caf5;
+  --accent: #7aa2f7;
+  --accent-ink: #16161e; /* Akzentblau ist hell -> dunkler Text statt Weiß für genug Kontrast */
+  --accent-soft: #2b3660;
+  --pending-bg: #1f2335;
+  --pending-fg: #565f89;
+  color-scheme: dark;
+}
+
+/* Catppuccin (Mocha) — dunkles Theme mit dem Catppuccin-Mauve als Akzentfarbe */
+:root[data-theme="catppuccin"] {
+  --ink-900: #f5f6fb;
+  --ink-800: #cdd6f4;
+  --ink-700: #bac2de;
+  --ink-600: #a6adc8;
+  --ink-400: #9399b2;
+  --ink-300: #6c7086;
+  --paper: #1e1e2e;
+  --card: #26273a;
+  --line: #45475a;
+  --bar-bg: #181825;
+  --hl-bg: #313244;
+  --hl-fg: #cdd6f4;
+  --accent: #cba6f7;
+  --accent-ink: #181825; /* Akzent-Mauve ist hell -> dunkler Text statt Weiß für genug Kontrast */
+  --accent-soft: #3b3355;
+  --pending-bg: #26273a;
+  --pending-fg: #6c7086;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  background: var(--paper);
+  color: var(--ink-800);
+  font-size: 15px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+textarea, input, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+a {
+  color: var(--accent);
+}
+
+/* ---------- Layout shell ---------- */
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-topbar {
+  background: var(--bar-bg);
+  color: #fff;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  box-shadow: var(--shadow-md);
+}
+
+.app-topbar .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+/* Titel/Untertitel mittig in der Kopfleiste, unabhängig von der Breite des
+   Logos links und der Fortschrittsanzeige rechts. app-topbar ist "position:
+   sticky", das reicht als Bezugspunkt für dieses absolut positionierte Element. */
+.app-topbar .brand-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+  max-width: 60%;
+}
+
+.app-topbar .brand .brand-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+/* Sonderfall für das echte Hitachi-Logo: kein farbiger Kreis, einfach das
+   Wortmarken-Logo in seiner eigenen Breite (statt in eine 28x28-Box gezwungen). */
+.app-topbar .brand .brand-mark.brand-mark--logo {
+  width: auto;
+  height: 15px;
+  border-radius: 0;
+  background: transparent;
+}
+
+.app-topbar .brand .brand-mark.brand-mark--logo svg {
+  width: auto;
+  height: 100%;
+}
+
+.app-topbar .sheet-title {
+  font-size: 16px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-topbar .sheet-subtitle {
+  color: var(--ink-200);
+  font-size: 12.5px;
+  font-weight: 400;
+}
+
+.topbar-progress {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 200px;
+}
+
+.topbar-progress .bar-track {
+  width: 140px;
+  height: 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+}
+
+.topbar-progress .bar-fill {
+  height: 100%;
+  /* nutzt die Akzentfarbe, damit der Fortschrittsbalken zu jedem Theme passt */
+  background: var(--accent);
+  border-radius: 4px;
+  transition: width 0.25s ease;
+}
+
+.topbar-progress .pct {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-100);
+  white-space: nowrap;
+}
+
+.app-main {
+  flex: 1;
+  /* min-width:0 überschreibt die Standard-Mindestbreite von Flex-Kindern
+     (die sich sonst am Inhalt orientiert) — ohne das würde eine breite
+     Messwert-Tabelle die ganze Seite aufblasen, statt selbst zu scrollen. */
+  min-width: 0;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 24px 120px;
+}
+
+/* ---------- Meta bar ---------- */
+
+.meta-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 18px 20px;
+  margin-bottom: 22px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px 18px;
+}
+
+.meta-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.meta-field label {
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-400);
+}
+
+.meta-field input,
+.meta-field select {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  font-size: 14px;
+  color: var(--ink-800);
+  background: var(--paper);
+}
+
+.meta-field input:focus,
+.meta-field select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.meta-field.readonly input {
+  background: var(--hl-bg);
+  color: var(--hl-fg);
+}
+
+/* ---------- Sections ---------- */
+
+.section-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: var(--bar-bg);
+  color: #fff;
+}
+
+.section-head h2 {
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  flex: 1;
+}
+
+.section-head .section-count {
+  font-size: 12px;
+  color: var(--ink-200);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.step-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 12px 16px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--line);
+}
+
+.step-row:first-of-type {
+  border-top: none;
+}
+
+.step-main {
+  min-width: 0;
+}
+
+.step-text {
+  font-size: 14.5px;
+  color: var(--ink-800);
+  line-height: 1.45;
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+/* Hervorgehobene Hinweis-Zeile (step.kind === "callout"), z.B. eine
+   Sicherheits-/Vorbereitungs-Warnung, die im Original-Excel rot markiert war.
+   Nutzt die gleiche rote Farbe wie überschrittene Messwerte (--bad-bg), nicht
+   das Orange von "Ongoing" — sonst würde das mit dem Status verwechselbar. */
+.step-row--callout {
+  background: var(--bad-bg);
+}
+
+.step-row--callout .step-text {
+  color: var(--bad-fg);
+  font-weight: 600;
+}
+
+.step-row--callout .step-text svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.step-row--callout .step-comment {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.step-reference {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--ink-400);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 5px 9px;
+}
+
+.step-reference svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.step-comment {
+  margin-top: 8px;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 7px 10px;
+  font-size: 13px;
+  color: var(--ink-700);
+  resize: vertical;
+  min-height: 34px;
+  background: var(--paper);
+}
+
+.step-comment::placeholder {
+  color: var(--ink-300);
+}
+
+.step-comment:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+  background: #fff;
+}
+
+/* ---------- Status control ---------- */
+
+.status-control {
+  display: flex;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--paper);
+  flex-shrink: 0;
+}
+
+.status-btn {
+  border: none;
+  background: transparent;
+  padding: 6px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-400);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  border-right: 1px solid var(--line);
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.status-btn:last-child {
+  border-right: none;
+}
+
+.status-btn svg {
+  width: 13px;
+  height: 13px;
+}
+
+.status-btn:hover {
+  background: var(--hl-bg);
+}
+
+.status-btn.active[data-state="done"] {
+  background: var(--done-bg);
+  color: var(--done-fg);
+}
+
+.status-btn.active[data-state="ongoing"] {
+  background: var(--ongoing-bg);
+  color: var(--ongoing-fg);
+}
+
+.status-btn.active[data-state="notneeded"] {
+  background: var(--notneeded-bg);
+  color: var(--notneeded-fg);
+}
+
+.status-btn.active[data-state="pending"] {
+  background: var(--hl-bg);
+  color: var(--hl-fg);
+}
+
+.status-pill {
+  display: none; /* am Bildschirm unsichtbar — dort übernehmen die Status-Knöpfe die Anzeige;
+                     dieses "Pill" wird nur beim Drucken (siehe @media print unten) eingeblendet */
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.status-pill[data-state="done"] { background: var(--done-bg); color: var(--done-fg); }
+.status-pill[data-state="ongoing"] { background: var(--ongoing-bg); color: var(--ongoing-fg); }
+.status-pill[data-state="notneeded"] { background: var(--notneeded-bg); color: var(--notneeded-fg); }
+.status-pill[data-state="pending"] { background: var(--pending-bg); color: var(--pending-fg); border: 1px dashed var(--ink-200); }
+
+/* ---------- Readings tables (Messwert-Abschnitte, z.B. "ASM Lifetime") ---------- */
+
+/* Kleine Hinweisleiste unter dem Abschnitts-Titel mit der Spezifikation/Legende
+   für die ganze Tabelle (statt einer Referenz-Notiz pro Zeile wie bei Checklisten). */
+.section-legend {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 12.5px;
+  color: var(--ink-400);
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.section-legend svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.readings-table-wrap {
+  overflow-x: auto;
+}
+
+.readings-table {
+  width: 100%;
+  /* table-layout: fixed, damit alle Werte-Spalten gleich breit sind. Ohne das
+     verteilt der Browser übrige Breite ungleichmäßig (die Spalte mit dem
+     ersten ausgefüllten Wert wirkt dann riesig, leere Spalten bleiben winzig). */
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.readings-table th,
+.readings-table td {
+  padding: 9px 14px;
+  text-align: center;
+  border-top: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.readings-table thead th {
+  border-top: none;
+  text-align: center;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--ink-400);
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.readings-table thead th .unit {
+  text-transform: none;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.readings-table .machine-col {
+  width: 110px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--ink-800);
+  white-space: nowrap;
+}
+
+.reading-cell {
+  min-width: 90px;
+}
+
+.reading-cell--na {
+  color: var(--ink-300);
+  font-size: 12.5px;
+}
+
+.reading-input {
+  width: 100%;
+  max-width: 90px;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 6px 4px;
+  font-size: 13.5px;
+  color: var(--ink-800);
+  background: var(--paper);
+}
+
+.reading-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+  background: #fff;
+}
+
+/* Ampelfarben: sobald ein Wert gegen die Spezifikation geprüft werden konnte,
+   färbt sich die ganze Zelle ein (nicht nur das Eingabefeld) — genau wie im Excel. */
+.reading-cell[data-reading-status="ok"] {
+  background: color-mix(in srgb, var(--done-bg) 16%, transparent);
+}
+.reading-cell[data-reading-status="ok"] .reading-input {
+  border-color: var(--done-bg);
+  color: var(--ink-800);
+}
+
+.reading-cell[data-reading-status="warn"] {
+  background: color-mix(in srgb, var(--ongoing-bg) 18%, transparent);
+}
+.reading-cell[data-reading-status="warn"] .reading-input {
+  border-color: var(--ongoing-bg);
+}
+
+.reading-cell[data-reading-status="bad"] {
+  background: color-mix(in srgb, var(--bad-bg) 18%, transparent);
+}
+.reading-cell[data-reading-status="bad"] .reading-input {
+  border-color: var(--bad-bg);
+  font-weight: 700;
+}
+
+/* Zahlen-Spinner der Browser ausblenden — sieht in dieser dichten Tabelle unruhig aus. */
+.reading-input::-webkit-inner-spin-button,
+.reading-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.reading-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* ---------- Notes footer ---------- */
+
+.notes-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 18px 20px;
+  margin-bottom: 18px;
+}
+
+.notes-card h2 {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.notes-card textarea {
+  width: 100%;
+  min-height: 80px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 13.5px;
+  color: var(--ink-700);
+  resize: vertical;
+  background: var(--paper);
+}
+
+.notes-card textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+  background: #fff;
+}
+
+.notes-card .hint {
+  font-size: 12px;
+  color: var(--ink-400);
+  margin-top: -4px;
+  margin-bottom: 10px;
+}
+
+/* ---------- Action bar ---------- */
+
+.action-bar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bar-bg);
+  border-radius: 999px;
+  padding: 8px 10px 8px 18px;
+  box-shadow: var(--shadow-lg);
+  z-index: 50;
+}
+
+.action-bar .save-state {
+  font-size: 12px;
+  color: var(--ink-200);
+  margin-right: 6px;
+  white-space: nowrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: none;
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: transform 0.08s ease, filter 0.12s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--accent);
+  /* eigene Variable statt festem Weiß, da manche Theme-Akzentfarben zu hell
+     für weißen Text sind (z.B. das helle Blau/Mauve bei den dunklen Themes) */
+  color: var(--accent-ink);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.08);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ink-100);
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* ---------- Landing page ---------- */
+
+.landing-main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.landing-header {
+  margin-bottom: 32px;
+}
+
+.landing-header h1 {
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+
+.landing-header p {
+  color: var(--ink-400);
+  font-size: 14.5px;
+}
+
+.sheet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.sheet-card {
+  display: block;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+}
+
+.sheet-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.sheet-card .card-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.sheet-card h3 {
+  font-size: 15.5px;
+  margin-bottom: 4px;
+}
+
+.sheet-card p {
+  font-size: 13px;
+  color: var(--ink-400);
+  margin: 0;
+}
+
+.sheet-card.placeholder {
+  opacity: 0.55;
+  border-style: dashed;
+}
+
+.sheet-card.placeholder:hover {
+  transform: none;
+  box-shadow: var(--shadow-sm);
+  border-color: var(--line);
+}
+
+/* ---------- Toast ---------- */
+
+.toast {
+  position: fixed;
+  bottom: 84px;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: var(--ink-900);
+  color: #fff;
+  font-size: 13px;
+  padding: 9px 16px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 60;
+}
+
+.toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---------- Theme-Umschalter (schwebender Knopf unten rechts) ---------- */
+
+.theme-switcher {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 70;
+}
+
+.theme-toggle-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bar-bg);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.theme-toggle-btn:hover {
+  filter: brightness(1.15);
+}
+
+/* Das kleine Auswahlfenster mit den Theme-Optionen, klappt über dem Knopf auf. */
+.theme-panel {
+  position: absolute;
+  bottom: 54px;
+  right: 0;
+  width: 210px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  display: none;
+}
+
+.theme-panel.open {
+  display: block;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 9px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--ink-800);
+}
+
+.theme-option:hover {
+  background: var(--hl-bg);
+}
+
+.theme-option.active {
+  font-weight: 600;
+}
+
+/* Kleiner Kreis mit drei Farbstreifen als Vorschau des jeweiligen Themes. */
+.theme-swatch {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+.theme-swatch span {
+  flex: 1;
+  height: 100%;
+}
+
+.theme-option .check {
+  margin-left: auto;
+  color: var(--accent);
+  display: none;
+  flex-shrink: 0;
+}
+
+.theme-option.active .check {
+  display: inline-flex;
+}
+
+/* ---------- Print (Regeln, die nur beim Drucken/PDF-Export gelten) ---------- */
+
+@media print {
+  /* WICHTIG: Der PDF-Export soll immer gleich (hell) aussehen, egal welches
+     Theme gerade auf dem Bildschirm aktiv ist — sonst würde z.B. bei einem
+     dunklen Theme dunkler Hintergrund mit hellem (kaum lesbarem!) Text
+     gedruckt werden. Darum hier alle Theme-Variablen fest auf die
+     Standardwerte zurücksetzen. !important, weil die Theme-Regeln in
+     styles.css (z.B. :root[data-theme="dark"]) sonst durch ihre höhere
+     Selektor-Genauigkeit gewinnen würden. */
+  :root {
+    --ink-900: #10161d !important;
+    --ink-800: #1c2530 !important;
+    --ink-700: #2a3644 !important;
+    --ink-600: #3d4c5e !important;
+    --ink-400: #6b7a8d !important;
+    --ink-300: #97a4b3 !important;
+    --paper: #ffffff !important;
+    --card: #ffffff !important;
+    --line: #cfd5dc !important;
+    --bar-bg: #2a3644 !important;
+    --hl-bg: #eceff2 !important;
+    --hl-fg: #3d4c5e !important;
+    --accent: #2f6fed !important;
+    --accent-ink: #ffffff !important;
+    --accent-soft: #e8f0fe !important;
+    --pending-bg: #ffffff !important;
+    --pending-fg: #8a94a1 !important;
+  }
+
+  @page {
+    margin: 9mm 10mm;
+  }
+
+  body {
+    background: #fff;
+    font-size: 8.5px;
+    line-height: 1.25;
+  }
+
+  .app-topbar,
+  .action-bar,
+  .toast,
+  .status-control,
+  .no-print {
+    display: none !important;
+  }
+
+  .app-main {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .meta-card {
+    box-shadow: none;
+    border: 1px solid #cfd5dc;
+    border-radius: 4px;
+    padding: 6px 10px;
+    gap: 4px 14px;
+    margin-bottom: 6px;
+  }
+
+  .meta-field label {
+    font-size: 7px;
+    margin-bottom: 1px;
+  }
+
+  .meta-field input,
+  .meta-field select {
+    border: none;
+    border-bottom: 1px solid #cfd5dc;
+    border-radius: 0;
+    background: transparent;
+    padding: 1px 0;
+    font-size: 8.5px;
+  }
+
+  .section-card {
+    box-shadow: none;
+    border: 1px solid #cfd5dc;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    /* Bewusst KEIN break-inside:avoid — wenn ganze Abschnitte nicht auf eine
+       Seite passen durften, sprang jeder zu große Abschnitt komplett auf die
+       nächste Seite (dadurch wurden aus dem PDF 5 statt 1-2 Seiten). Wenn
+       Abschnitte über die Seite hinweg umbrechen dürfen, bleibt es kompakt. */
+  }
+
+  .section-head {
+    background: #2a3644 !important;
+    color: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    padding: 3px 10px;
+  }
+
+  .section-head h2 {
+    font-size: 9px;
+  }
+
+  .section-head .section-count {
+    font-size: 7px;
+  }
+
+  .step-row {
+    padding: 2px 10px;
+    gap: 4px 10px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .step-text {
+    font-size: 8.5px;
+    line-height: 1.25;
+  }
+
+  .step-reference {
+    margin-top: 1px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font-size: 7.5px;
+    gap: 3px;
+  }
+
+  .step-reference svg {
+    display: none;
+  }
+
+  .status-pill {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    display: inline-flex !important;
+    font-size: 7.5px;
+    padding: 1px 8px;
+    font-weight: 700;
+  }
+
+  .step-comment {
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin-top: 1px;
+    min-height: 0;
+    resize: none;
+    font-size: 8px;
+  }
+
+  .step-comment:placeholder-shown {
+    display: none;
+  }
+
+  .step-row--callout {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .section-legend {
+    padding: 3px 10px;
+    font-size: 7.5px;
+    gap: 4px;
+  }
+
+  .section-legend svg {
+    display: none;
+  }
+
+  .readings-table {
+    font-size: 7.5px;
+  }
+
+  .readings-table th,
+  .readings-table td {
+    padding: 3px 6px;
+  }
+
+  .readings-table thead th {
+    font-size: 6.5px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  .reading-input {
+    border: none;
+    background: transparent;
+    padding: 0;
+    font-size: 7.5px;
+    /* max-width bewusst NICHT entfernen: ohne Begrenzung zieht sich die
+       Ampelfarbe der Zelle über die ganze (sehr breite) Tabellenspalte statt
+       nur um die Zahl herum. */
+    max-width: 60px;
+  }
+
+  .reading-cell,
+  .reading-cell--na {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .notes-card {
+    box-shadow: none;
+    border: 1px solid #cfd5dc;
+    border-radius: 4px;
+    padding: 6px 10px;
+    margin-bottom: 0;
+  }
+
+  .notes-card h2 {
+    font-size: 9px;
+  }
+
+  .notes-card .hint {
+    display: none;
+  }
+
+  .notes-card textarea {
+    min-height: 22px;
+    font-size: 8px;
+    padding: 4px 6px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}

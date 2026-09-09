@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PM Sheets</title>
+  <!-- Gespeichertes Theme (oder "hitachi" als Standard) SOFORT setzen, bevor
+       irgendetwas gezeichnet wird — sonst würde man kurz das falsche Theme
+       aufblitzen sehen. -->
+  <script>
+    (function () {
+      var t = localStorage.getItem("pm-theme") || "hitachi";
+      if (t !== "industrial") document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+  <!-- Gemeinsames Stylesheet für alle PM-Sheets -->
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <!-- Startseite: Übersicht aller verfügbaren PM-Sheets -->
+  <div class="app-shell">
+    <header class="app-topbar">
+      <div class="brand">
+        <span class="brand-mark" id="brand-mark" data-brand-mark></span>
+      </div>
+      <div class="brand-text">
+        <div class="sheet-title">PM Sheets</div>
+        <div class="sheet-subtitle">Preventive maintenance, digitized</div>
+      </div>
+    </header>
+
+    <main class="landing-main">
+      <div class="landing-header">
+        <h1>Select a PM sheet</h1>
+        <p>Fill it out on any device, then export a PDF for your records.</p>
+      </div>
+
+      <!-- Kachel-Übersicht: eine Karte pro PM-Sheet, verlinkt auf sheets/<name>/index.html -->
+      <div class="sheet-grid">
+        <a class="sheet-card" href="sheets/asm-tubechange/index.html">
+          <div class="card-icon" id="card-icon-1"></div>
+          <h3>ASM CVD Tubechange</h3>
+          <p>Preparation, tube removal, cleaning, rebuild, calibration and afterchange tasks.</p>
+        </a>
+
+        <a class="sheet-card" href="sheets/diffusion-weekly-pm/index.html">
+          <div class="card-icon" id="card-icon-2"></div>
+          <h3>Diffusion Weekly PM</h3>
+          <p>Lifetime counters, bubbler levels, spray/drain checks and panel inspection for the diffusion area.</p>
+        </a>
+
+        <!-- Platzhalter-Karte: zeigt, dass hier später weitere Sheets erscheinen -->
+        <div class="sheet-card placeholder">
+          <div class="card-icon" id="card-icon-3"></div>
+          <h3>More sheets coming</h3>
+          <p>Additional PM sheets will show up here as they're ported.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/icons.js"></script>
+  <script>
+    // Icons erst per JavaScript einsetzen, da sie als Text in icons.js liegen.
+    // Die Marke oben links (brand-mark) übernimmt PM_BRAND, damit beim
+    // Hitachi-Energy-Theme automatisch das echte Logo statt des Schild-Icons erscheint.
+    PM_BRAND.refresh();
+    document.getElementById("card-icon-1").innerHTML = PM_ICONS.clipboard;
+    document.getElementById("card-icon-2").innerHTML = PM_ICONS.clipboard;
+    document.getElementById("card-icon-3").innerHTML = PM_ICONS.clipboard;
+  </script>
+  <!-- Baut den kleinen Theme-Umschalter unten rechts -->
+  <script src="assets/theme.js"></script>
+</body>
+</html>
