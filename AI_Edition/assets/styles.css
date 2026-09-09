@@ -1,6 +1,9 @@
 /* ===========================================================
    PM Sheets — shared design system
-   Industrial, modern, no-frills. System fonts, no emoji.
+   Industrial spec-sheet aesthetic: Space Grotesk for structure,
+   IBM Plex Sans for reading, IBM Plex Mono for anything numeric
+   or label-like (this is a measurement sheet, so the mono voice
+   is doing real work, not decoration). No emoji.
    =========================================================== */
 
 /* Farb- und Abstandsvariablen, die im ganzen Stylesheet wiederverwendet werden. */
@@ -56,13 +59,26 @@
   --bad-bg: #dc2626;
   --bad-fg: #ffffff;
 
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
+  /* Kleine, konsequente Radien statt der weichen "rounded-xl"-Optik —
+     das hier soll wie ein technisches Formblatt aussehen, nicht wie eine
+     App-Landingpage. */
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
 
-  --shadow-sm: 0 1px 2px rgba(16, 22, 29, 0.06);
-  --shadow-md: 0 4px 16px rgba(16, 22, 29, 0.08);
-  --shadow-lg: 0 12px 32px rgba(16, 22, 29, 0.14);
+  /* Harte, kurze Schattenwürfe statt weicher Unschärfe — wirkt wie
+     aufgelegtes Papier, nicht wie ein schwebendes Card-UI. */
+  --shadow-sm: 0 1px 0 rgba(16, 22, 29, 0.5);
+  --shadow-md: 2px 2px 0 rgba(16, 22, 29, 0.55);
+  --shadow-lg: 3px 3px 0 rgba(16, 22, 29, 0.6);
+
+  /* Schriften: klare Rollentrennung — Space Grotesk trägt Struktur
+     (Marke, Überschriften, Buttons), IBM Plex Sans trägt Fließtext,
+     IBM Plex Mono trägt alles Numerische/Label-hafte (Messwerte,
+     Kürzel, Status), passend zu einem Mess-/Prüfprotokoll. */
+  --font-display: "Space Grotesk", "Arial Narrow", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "Consolas", monospace;
 
   color-scheme: light;
 }
@@ -176,7 +192,7 @@ html, body {
 }
 
 body {
-  font-family: "Segoe UI", "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-body);
   background: var(--paper);
   color: var(--ink-800);
   font-size: 15px;
@@ -186,6 +202,7 @@ body {
 
 h1, h2, h3, h4 {
   margin: 0;
+  font-family: var(--font-display);
   font-weight: 600;
   letter-spacing: -0.01em;
 }
@@ -198,6 +215,24 @@ button {
 textarea, input, select {
   font-family: inherit;
   font-size: inherit;
+}
+
+/* Alles Numerische/Label-hafte läuft in der Mono-Stimme — Messwerte,
+   Kürzel, Status, Feld-Labels: das gibt der Seite die Anmutung eines
+   echten Prüfprotokolls statt einer generischen Formular-App. */
+.meta-field label,
+.section-head .section-count,
+.status-btn,
+.status-pill,
+.readings-table thead th,
+.readings-table .machine-col,
+.reading-input,
+.step-reference,
+.section-legend,
+.notes-card .hint,
+.topbar-progress .pct,
+.sheet-subtitle {
+  font-family: var(--font-mono);
 }
 
 a {
@@ -213,7 +248,17 @@ a {
 }
 
 .app-topbar {
-  background: var(--bar-bg);
+  /* Feine diagonale Riefen über der Balkenfarbe — gebürstetes Metall statt
+     Flachfarbe, aber ohne eine einzige neue Farbe einzuführen. */
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.035) 0px,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 7px
+    ),
+    var(--bar-bg);
   color: #fff;
   padding: 14px 24px;
   display: flex;
@@ -222,16 +267,18 @@ a {
   position: sticky;
   top: 0;
   z-index: 40;
-  box-shadow: var(--shadow-md);
+  border-bottom: 2px solid var(--accent);
 }
 
 .app-topbar .brand {
   display: flex;
   align-items: center;
   gap: 10px;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: 15px;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
@@ -251,7 +298,7 @@ a {
 .app-topbar .brand .brand-mark {
   width: 28px;
   height: 28px;
-  border-radius: 7px;
+  border-radius: var(--radius-sm);
   background: var(--accent);
   display: flex;
   align-items: center;
@@ -275,8 +322,10 @@ a {
 }
 
 .app-topbar .sheet-title {
+  font-family: var(--font-display);
   font-size: 16px;
   font-weight: 600;
+  letter-spacing: 0.01em;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -284,8 +333,9 @@ a {
 
 .app-topbar .sheet-subtitle {
   color: var(--ink-200);
-  font-size: 12.5px;
+  font-size: 11.5px;
   font-weight: 400;
+  letter-spacing: 0.02em;
 }
 
 .topbar-progress {
@@ -397,14 +447,24 @@ a {
   align-items: center;
   gap: 12px;
   padding: 14px 20px;
-  background: var(--bar-bg);
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.035) 0px,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 7px
+    ),
+    var(--bar-bg);
   color: #fff;
+  border-left: 3px solid var(--accent);
 }
 
 .section-head h2 {
-  font-size: 14.5px;
+  font-size: 13.5px;
   font-weight: 600;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   flex: 1;
 }
 
@@ -510,7 +570,7 @@ a {
 .status-control {
   display: flex;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
   background: var(--paper);
   flex-shrink: 0;
@@ -520,8 +580,10 @@ a {
   border: none;
   background: transparent;
   padding: 6px 12px;
-  font-size: 12.5px;
+  font-size: 11.5px;
   font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
   color: var(--ink-400);
   display: flex;
   align-items: center;
@@ -571,8 +633,10 @@ a {
   gap: 5px;
   font-size: 12px;
   font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
   padding: 3px 10px;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
 }
 
 .status-pill[data-state="done"] { background: var(--done-bg); color: var(--done-fg); }
@@ -764,14 +828,16 @@ a {
   align-items: center;
   gap: 8px;
   background: var(--bar-bg);
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
+  border-top: 2px solid var(--accent);
   padding: 8px 10px 8px 18px;
   box-shadow: var(--shadow-lg);
   z-index: 50;
 }
 
 .action-bar .save-state {
-  font-size: 12px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
   color: var(--ink-200);
   margin-right: 6px;
   white-space: nowrap;
@@ -782,10 +848,12 @@ a {
   align-items: center;
   gap: 7px;
   border: none;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   padding: 9px 16px;
-  font-size: 13.5px;
+  font-family: var(--font-display);
+  font-size: 13px;
   font-weight: 600;
+  letter-spacing: 0.02em;
   transition: transform 0.08s ease, filter 0.12s ease;
 }
 
@@ -867,7 +935,7 @@ a {
 .sheet-card .card-icon {
   width: 38px;
   height: 38px;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   background: var(--accent-soft);
   color: var(--accent);
   display: flex;
@@ -932,10 +1000,11 @@ a {
 }
 
 .theme-toggle-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
   border: none;
+  border-top: 2px solid var(--accent);
   background: var(--bar-bg);
   color: #fff;
   display: flex;

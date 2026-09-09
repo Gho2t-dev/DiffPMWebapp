@@ -33,7 +33,7 @@ window.PM_SHEET = {
 
   sections: [
     {
-      title: "Before starting PM",
+      title: "Pre-PM Check",
       steps: [{ kind: "callout", text: "Ensure production is informed of PM action" }],
     },
 
@@ -43,7 +43,7 @@ window.PM_SHEET = {
     {
       title: "ASM Lifetime",
       type: "readings",
-      legend: "Poly: Liner 115'000 · Boot 55'000  |  Sipos: Liner 60'000 · Boot 15'000  |  Nitride: Liner 58'000 · Boot 15'000 · Cold Trap 18'000",
+      legend: "Poly: Liner 115'000 · Boat 55'000  |  Sipos: Liner 60'000 · Boat 15'000  |  Nitride: Liner 58'000 · Boat 15'000 · Cold Trap 18'000",
       columns: [
         { key: "liner", label: "Liner", rule: { type: "max", warnRatio: 0.9 } },
         { key: "bootA", label: "Boot A", rule: { type: "max", warnRatio: 0.9 } },
@@ -123,7 +123,7 @@ window.PM_SHEET = {
     },
 
     {
-      title: "Maschine Panel Check and Waferbreaks",
+      title: "Machine Panel Check",
       note: "All maschine panels are in place",
       steps: [
         { text: "QD521" },
@@ -142,14 +142,14 @@ window.PM_SHEET = {
 
     {
       title: "Clean Umhorder and Port Area",
-      note: "Clean Port area and Umhorder",
+      note: "Clean Port area and Umhorder with the vacuum",
       steps: [{ text: "QD521" }, { text: "QD525" }, { text: "QD526" }, { text: "QD527" }],
     },
 
     {
-      title: "Check Centrotherm Boots",
+      title: "Check Centrotherm Boats",
       // Kommentarfeld pro Zeile wird hier als "Date of change"-Feld genutzt.
-      note: "Check Boots for visible contamination. If yes, note the date of change in the comment box.",
+      note: "Check Boats for visible contamination. If yes, note the date of change in the comment box.",
       steps: [
         { text: "QD521.2" },
         { text: "QD521.3" },
@@ -171,7 +171,7 @@ window.PM_SHEET = {
     },
 
     {
-      title: "Vacuumwands Control",
+      title: "Vacuumwand check",
       steps: [{ kind: "callout", text: "Control all vacuum wands in the area for damages. Replace if needed" }],
     },
   ],
