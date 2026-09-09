@@ -59,12 +59,11 @@
   --bad-bg: #dc2626;
   --bad-fg: #ffffff;
 
-  /* Kleine, konsequente Radien statt der weichen "rounded-xl"-Optik —
-     das hier soll wie ein technisches Formblatt aussehen, nicht wie eine
-     App-Landingpage. */
-  --radius-sm: 2px;
-  --radius-md: 3px;
-  --radius-lg: 4px;
+  /* Etwas weicher abgerundet als ein reines Formblatt, aber immer noch
+     zurückhaltend — keine "rounded-xl"-App-Optik. */
+  --radius-sm: 5px;
+  --radius-md: 7px;
+  --radius-lg: 9px;
 
   /* Harte, kurze Schattenwürfe statt weicher Unschärfe — wirkt wie
      aufgelegtes Papier, nicht wie ein schwebendes Card-UI. */
@@ -73,11 +72,12 @@
   --shadow-lg: 3px 3px 0 rgba(16, 22, 29, 0.6);
 
   /* Schriften: klare Rollentrennung — Space Grotesk trägt Struktur
-     (Marke, Überschriften, Buttons), IBM Plex Sans trägt Fließtext,
-     IBM Plex Mono trägt alles Numerische/Label-hafte (Messwerte,
+     (Marke, Überschriften, Buttons), Noto Sans trägt Fließtext (neutrale,
+     humanistische Grotesk, wie sie auch auf hitachienergy.com verwendet
+     wird), IBM Plex Mono trägt alles Numerische/Label-hafte (Messwerte,
      Kürzel, Status), passend zu einem Mess-/Prüfprotokoll. */
   --font-display: "Space Grotesk", "Arial Narrow", sans-serif;
-  --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --font-body: "Noto Sans", "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", "Consolas", monospace;
 
   color-scheme: light;
