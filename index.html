@@ -11,24 +11,73 @@
 
     <header>
         <p>Start time and date: <span id="startTime"></span></p>
+
         <label for="pm_type">PM Type:</label>
         <input type="text" id="pm_type" value="ASM Tubechange">
-        <label for="name">Name:</label>
-        <input id="name" type="text" placeholder="YourName">
+
+        <label for="user">Name:</label>
+        <select name="user" id="user">
+            <option value="empty">Please select your Name...</option>
+            <option value="jonas">Jonas Steinmann</option>
+            <option value="luke">Luke Folan</option>
+            <option value="eskan">Eskan Osman</option>
+            <option value="fabian">Fabian Harrab</option>
+            <option value="colin">Colin Jones</option>
+            <option value="elias">Elias Erbel</option>
+            <option value="senad">Senad Kavazovic</option>
+        </select>
+
         <label for="system_id">System ID:</label>
-        <input type="text" id="system_id" placeholder="ex. QD541.1">
+        <select name="system_id" id="system_id">
+            <option value="empty">Select Tool ID...</option>
+            <option value="QD541.1">QD541.1</option>
+            <option value="QD541.2">QD541.2</option>
+            <option value="QD542.1">QD542.1</option>
+            <option value="QD542.2">QD542.2</option>
+            <option value="QD543.1">QD543.1</option>
+            <option value="QD543.2">QD543.2</option>
+        </select>
     </header>
 
     <div id="preparation">
         <div>
             <h3>Preparation of Tube Change</h3>
             <p>Prepare all parts for tube change</p>
+            <p>2. Inform Operators of the sheduled work</p>
+            <p>Check basepressure and leakrate for refrence</p>
+            <p>Change the Reactor into manual mode and download/start the maintenance recipe</p>
+            <p>Download the cooldown temperature table and backfill/purge the tube by letting N2 flow inside the variable commands</p>
         </div>
         <div>
-            <h3>Referenca Data</h3>
+            <h3>Notes</h3>
+            <p>
+                Quartz tube, cvd paddle TC, O-Ring kit, clean liner
+                and new dual-injector.* On nitride tools also a new cornervalve and clean coldtrap.
+                (*except on nitride tools QD542.2 and QD543.2)
+            </p>
+            <p>
+                change SI-View status to SDT_PM, 
+                only to this if previous lots have been completed 
+                or ask operators to do this task for you.
+            </p>
+            <p>
+                None
+            </p>
+            <p>
+                None
+            </p>
+            <p>
+                Make sure the ramp is set low ~2°C per/min. Cooldown to 25°C
+            </p>
         </div>
         <div>
-            <h3>Data</h3>
+            <h3>Checklist</h3>
+            <select name="state" id="state">
+                <option value="empty">select your work progress...</option>
+                <option value="done">Done!</option>
+                <option value="ongoing">Ongoing</option>
+                <option value="notNeeded">Not needed</option>
+            </select>
         </div>
         <div>
             <h3>Comments</h3>
