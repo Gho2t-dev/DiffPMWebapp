@@ -43,7 +43,7 @@ window.PM_SHEET = {
     {
       title: "ASM Lifetime",
       type: "readings",
-      legend: "Poly: Liner 115'000 · Boat 55'000  |  Sipos: Liner 60'000 · Boat 15'000  |  Nitride: Liner 58'000 · Boat 15'000 · Cold Trap 18'000",
+      legend: "Poly: Liner 110'000 · Boat 55'000  |  Sipos: Liner 60'000 · Boat 15'000  |  Nitride: Liner 58'000 · Boat 15'000 · Cold Trap 18'000",
       columns: [
         { key: "liner", label: "Liner", rule: { type: "max", warnRatio: 0.9 } },
         { key: "bootA", label: "Boot A", rule: { type: "max", warnRatio: 0.9 } },
@@ -51,8 +51,8 @@ window.PM_SHEET = {
         { key: "coolTrap", label: "Cool Trap", rule: { type: "max", warnRatio: 0.9 } },
       ],
       rows: [
-        { machine: "QD541.1", overrides: { liner: { limit: 115000 }, bootA: { limit: 55000 }, bootB: { limit: 55000 }, coolTrap: null } },
-        { machine: "QD541.2", overrides: { liner: { limit: 115000 }, bootA: { limit: 55000 }, bootB: { limit: 55000 }, coolTrap: null } },
+        { machine: "QD541.1", overrides: { liner: { limit: 110000 }, bootA: { limit: 55000 }, bootB: { limit: 55000 }, coolTrap: null } },
+        { machine: "QD541.2", overrides: { liner: { limit: 110000 }, bootA: { limit: 55000 }, bootB: { limit: 55000 }, coolTrap: null } },
         { machine: "QD542.1", overrides: { liner: { limit: 60000 }, bootA: { limit: 15000 }, bootB: { limit: 15000 }, coolTrap: null } },
         { machine: "QD542.2", overrides: { liner: { limit: 58000 }, bootA: { limit: 15000 }, bootB: { limit: 15000 }, coolTrap: { limit: 18000 } } },
         { machine: "QD543.1", overrides: { liner: { limit: 60000 }, bootA: { limit: 15000 }, bootB: { limit: 15000 }, coolTrap: null } },
