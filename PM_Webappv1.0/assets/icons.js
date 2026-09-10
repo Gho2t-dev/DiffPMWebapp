@@ -15,7 +15,7 @@ window.PM_ICONS = {
   palette: `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-1 2-2s-.5-1.4-.5-2.4c0-1.1 1-2.1 2-2.1h1.7A3.3 3.3 0 0 0 20.5 11c0-4.4-3.8-8-8.5-8Z"/><circle cx="7.3" cy="10.2" r="1.1" fill="currentColor" stroke="none"/><circle cx="10.5" cy="7" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="7.8" r="1.1" fill="currentColor" stroke="none"/></svg>`, // Palette-Symbol für den Theme-Umschalter
   alert: `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4"/><path d="M12 17h.01"/></svg>`, // Warndreieck für Hinweis-Banner (kind: "callout")
 
-  // Das echte "HITACHI"-Logo, so wie es auf hitachienergy.com im
+  // Das "HITACHI"-Logo, so wie es auf hitachienergy.com im
   // Header verwendet wird (direkt von dort übernommen). "fill" wurde von
   // fest #0C0C0C auf currentColor umgestellt, damit es sich automatisch an
   // die Textfarbe seines Containers anpasst (z.B. Weiss auf der dunklen Kopfleiste).
@@ -23,7 +23,7 @@ window.PM_ICONS = {
 };
 
 // Baut die Marke oben links passend zum aktuellen Theme: normalerweise das
-// generische Schild-Icon, beim Hitachi-Energy-Theme das echte Firmenlogo.
+// Schild-Icon, beim Hitachi-Energy-Theme das Firmenlogo.
 window.PM_BRAND = {
   // Liefert das fertige <span>...</span> für die erste Anzeige (z.B. beim Aufbau der Kopfleiste).
   markup: function () {
