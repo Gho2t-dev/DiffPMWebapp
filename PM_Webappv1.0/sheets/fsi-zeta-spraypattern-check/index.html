@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Spray Pattern Check - FSI Zeta</title>
+  <!-- Gespeichertes Theme (oder "hitachi" als Standard) SOFORT setzen, bevor
+       irgendetwas gezeichnet wird — sonst würde man kurz das falsche Theme
+       aufblitzen sehen. -->
+  <script>
+    (function () {
+      var t = localStorage.getItem("pm-theme") || "hitachi";
+      if (t !== "industrial") document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+  <!-- Schriften: Space Grotesk (Überschriften/UI) + IBM Plex Sans (Fließtext) + IBM Plex Mono (Messwerte/Labels) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <!-- Gemeinsames Stylesheet, liegt zwei Ordner höher unter assets/ -->
+  <link rel="stylesheet" href="../../assets/styles.css">
+</head>
+<body>
+  <!-- Diese Seite ist nur eine dünne Hülle: der eigentliche Inhalt wird von
+       sheet-runtime.js zur Laufzeit hier hineingebaut. -->
+  <div id="pm-root" class="app-shell"></div>
+
+  <!-- Reihenfolge wichtig: erst Icons, dann die Daten für dieses Sheet,
+       dann die Runtime, die beides zusammen zu einer Seite zusammenbaut. -->
+  <script src="../../assets/icons.js"></script>
+  <script src="data.js"></script>
+  <script src="../../assets/sheet-runtime.js"></script>
+  <script>
+    // Startet die Runtime mit den Daten aus data.js (window.PM_SHEET).
+    window.PM_RUNTIME.createRuntime(window.PM_SHEET).boot();
+  </script>
+  <!-- Baut den kleinen Theme-Umschalter unten rechts -->
+  <script src="../../assets/theme.js"></script>
+</body>
+</html>
