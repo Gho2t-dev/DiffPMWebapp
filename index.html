@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
   <!-- Gemeinsames Stylesheet für alle PM-Sheets -->
-  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="root/assets/styles.css">
 </head>
 <body>
   <!-- Startseite: Übersicht aller verfügbaren PM-Sheets -->
@@ -41,19 +41,19 @@
 
       <!-- Kachel-Übersicht: eine Karte pro PM-Sheet, verlinkt auf sheets/<name>/index.html -->
       <div class="sheet-grid">
-        <a class="sheet-card" href="sheets/asm-tubechange/index.html">
+        <a class="sheet-card" href="root/sheets/asm-tubechange/index.html">
           <div class="card-icon" id="card-icon-1"></div>
           <h3>ASM CVD Tubechange</h3>
           <p>Preparation, tube removal, cleaning, rebuild, calibration and afterchange tasks.</p>
         </a>
 
-        <a class="sheet-card" href="sheets/diffusion-weekly-pm/index.html">
+        <a class="sheet-card" href="root/sheets/diffusion-weekly-pm/index.html">
           <div class="card-icon" id="card-icon-2"></div>
           <h3>Diffusion Weekly PM</h3>
           <p>Lifetime counters, bubbler levels, spray/drain checks and panel inspection for the diffusion area.</p>
         </a>
 
-         <a class="sheet-card" href="sheets/fsi-zeta-spraypattern-check/index.html">
+         <a class="sheet-card" href="root/sheets/fsi-zeta-spraypattern-check/index.html">
           <div class="card-icon" id="card-icon-3"></div>
           <h3>FSI Zeta Weekly spray pattern check</h3>
           <p>Verify and adjust the spray pattern in the chamber.</p>
@@ -69,7 +69,7 @@
     </main>
   </div>
 
-  <script src="assets/icons.js"></script>
+  <script src="root/assets/icons.js"></script>
   <script>
     // Icons erst per JavaScript einsetzen, da sie als Text in icons.js liegen.
     // Die Marke oben links (brand-mark) übernimmt PM_BRAND, damit beim
@@ -81,6 +81,6 @@
     document.getElementById("card-icon-4").innerHTML = PM_ICONS.clipboard;
   </script>
   <!-- Baut den kleinen Theme-Umschalter unten rechts -->
-  <script src="assets/theme.js"></script>
+  <script src="root/assets/theme.js"></script>
 </body>
 </html>
